@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lending', function (Blueprint $table) {
+        Schema::create('lendings', function (Blueprint $table) {
             $table->id()->primary();
             $table->unsignedBigInteger('copy_id');
-            $table->foreign('copy_id')->references('id')->on('copy');
+            $table->foreign('copy_id')->references('id')->on('copies');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lending');
+        Schema::dropIfExists('lendings');
     }
 };

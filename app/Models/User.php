@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,7 +21,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password', //*************************/
+        'first_name',
+        'last_name',
+        'middle_name',
     ];
 
     /**
@@ -44,5 +48,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //*****************************/
+    public function lendings() 
+    {
+        return $this->hasMany(Lending::class);
+    }
+
+    public function copies(): BelongsToMany
+    {
+        return $this->belongsToMany(Copy::class, 'lendings')
+            ->withPivot('lending_date', 'plan_return_date', 'fact_return_date');
     }
 }
