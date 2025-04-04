@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Copy extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['edition_id', 'wear_coefficient'];
+
+
     public function edition(): BelongsTo
     {
         return $this->belongsTo(Edition::class);
@@ -26,4 +30,5 @@ class Copy extends Model
         return $this->belongsToMany(User::class, 'lendings')
         ->withPivot('lending_date', 'plan_return_date', 'fact_return_date');
     }
+    
 }
