@@ -24,5 +24,8 @@
     </tr>
 @endforeach 
     </table>
+
+    <div>{{ $copies->links() }}</div>
+
 </body>
 </html>

@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class CopyController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $perpage = $request->perpage ?? 2;
         return view('copies', [
-            'copies' => Copy::all()->sortBy('id')]);
+            'copies' => Copy::paginate($perpage)->withQueryString()
+        ]);
     }
 
     public function show(string $id){
