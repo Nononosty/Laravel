@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Copy;
 use App\Models\Edition;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class CopyController extends Controller
@@ -40,11 +41,17 @@ class CopyController extends Controller
     }
 
     public function edit(string $id){
+        if ((! Gate::allows('edit-copy', Copy::all()->where('id', $id)->first()))){
+            return redirect('/error')->with('message', 'У вас нет прав для редактирования экземпляра № ' . $id);
+        }
+
         return view('copy_edit', [
             'copy' => Copy::all()->where('id', $id)->first(),
             'editions' => Edition::all()
         ]);
     }
+
+    
 
     public function update(Request $request, string $id)
     {
@@ -61,6 +68,10 @@ class CopyController extends Controller
     }
 
     public function destroy(string $id){
+        if(! Gate::allows('destroy-copy', Copy::all()->where('id', $id)->first())){
+            return redirect('/error')->with('message', 'У вас нет разрешения на удаление экземпляра № ' . $id);    
+        }
+
         Copy::destroy($id);
         return redirect('/copy');
     }
