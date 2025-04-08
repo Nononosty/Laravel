@@ -20,6 +20,7 @@
                         <td class="text-center">
                             <a href="{{ url('copy/edit/' . $copy->id) }}" class="btn btn-sm btn-warning me-1">Редактировать</a>
                             <a href="{{ url('copy/destroy/' . $copy->id) }}" class="btn btn-sm btn-danger">Удалить</a>
+                            <a href="{{ url('lending/create/' . $copy->id) }}" class="btn btn-sm btn-success">Выдать</a>
                         </td>
                     </tr>
                 @endforeach

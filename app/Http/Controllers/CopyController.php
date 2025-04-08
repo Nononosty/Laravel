@@ -23,6 +23,11 @@ class CopyController extends Controller
     }
 
     public function create(){
+        if (!Gate::allows('add-copy')) {
+            return redirect()->intended('/copy')->withErrors([
+                'lend' => 'У вас нет прав на добавление экземпляров.',
+            ]);
+        }
         return view('copy_create', [
             'editions' => Edition::all()
         ]);

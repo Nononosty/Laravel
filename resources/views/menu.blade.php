@@ -21,7 +21,12 @@
                         <a class="nav-link" href="{{ url('edition') }}">Издания</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Читатели</a>
+                        <a class="nav-link" href="{{ url('lending') }}">Выданные книги</a>
+                    </li>
+                    <li class="nav-item">
+                        @if(Auth::check() && Auth::user()->is_admin)
+                            <a class="nav-link" href="{{ url('lending/all') }}">Все выдачи</a>
+                        @endif
                     </li>
                 </ul>
 

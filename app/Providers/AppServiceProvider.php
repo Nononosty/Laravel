@@ -32,5 +32,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('edit-copy', function(User $user, Copy $copy){
             return $user->is_admin OR $copy->wear_coefficient < 0.1;
         });
+
+        Gate::define('lend-copy', function (User $user) {
+            return $user->is_admin;
+        });
+        
+        Gate::define('add-copy', function(User $user) {
+            return $user->is_admin;
+        });
     }
 }

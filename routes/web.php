@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CopyController;
 use App\Http\Controllers\EditionController;
+use App\Http\Controllers\LendingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,9 @@ Route::post('/auth', [LoginController::class, 'authenticate']);
 Route::get('/error', function(){
     return view('error', ['message' => session('message')]);
 });
+
+Route::get('lending/create/{copyId?}', [LendingController::class, 'create'])->middleware('auth');
+Route::post('/lending/store', [LendingController::class, 'store']);
+Route::get('/lending/all', [LendingController::class, 'allLendings'])->name('lendings.all')->middleware('auth');
+
+Route::get('/lending', [LendingController::class, 'userLendings'])->middleware('auth');
