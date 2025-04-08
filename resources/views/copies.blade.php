@@ -1,31 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-22</title>
-</head>
-<body>
-    <h2>Список экземпляров:</h2>
-    <table border="1">
-        <thead>
-            <td>id</td>
-            <td>Издание</td>
-            <td>Коэффициент износа</td>
-            <td>Действия</td>
-        </thead>
-@foreach ($copies as $copy)
-    <tr>
-        <td>{{$copy->id}}</td>
-        <td>{{$copy->edition->name}}</td>
-        <td>{{$copy->wear_coefficient}}</td>
-        <td><a href="{{url('copy/destroy/' .$copy->id)}}">Удалить</a>
-            <a href="{{url('copy/edit/' .$copy->id)}}">Редактировать</a>
-    </td>
-    </tr>
-@endforeach 
-    </table>
+@extends('layout')
+@section('content')
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Список экземпляров</h2>
+        <table class="table table-bordered">
+            <thead class="table-light text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Издание</th>
+                    <th>Коэффициент износа</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($copies as $copy)
+                    <tr>
+                        <td>{{ $copy->id }}</td>
+                        <td>{{ $copy->edition->name }}</td>
+                        <td>{{ $copy->wear_coefficient }}</td>
+                        <td class="text-center">
+                            <a href="{{ url('copy/edit/' . $copy->id) }}" class="btn btn-sm btn-warning me-1">Редактировать</a>
+                            <a href="{{ url('copy/destroy/' . $copy->id) }}" class="btn btn-sm btn-danger">Удалить</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div>
+            {{ $copies->links() }}
+        </div>
 
-    <div>{{ $copies->links() }}</div>
-
-</body>
-</html>
+    </div>
+@endsection

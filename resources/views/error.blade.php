@@ -1,11 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-22</title>
-</head>
-<body>
-    <h2>{{ $message }}</h2>
-    <a href="{{url('copy')}}">Назад</a>
-</body>
-</html>
+<div class="container" style="margin-top: 80px"> 
+    @error('email')
+    <div class="alert alert-warning" role="alert"> 
+        {{ $message }}
+    </div>
+    @enderror
+    @error('password')
+    <div class="alert alert-warning" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+    @error('error')
+    <div class="alert alert-warning" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+    @error('success')
+    <div class="alert alert-success" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+    @error('edition_id')
+    <div class="alert alert-success" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+    @error('wear_coefficient')
+    <div class="alert alert-success" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+    @error('del')
+    <div class="alert alert-warning" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+    @error('edit')
+    <div class="alert alert-warning" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
+</div>

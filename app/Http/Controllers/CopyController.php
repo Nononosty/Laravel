@@ -42,7 +42,9 @@ class CopyController extends Controller
 
     public function edit(string $id){
         if ((! Gate::allows('edit-copy', Copy::all()->where('id', $id)->first()))){
-            return redirect('/error')->with('message', 'У вас нет прав для редактирования экземпляра № ' . $id);
+            return redirect()->intended('/copy')->withErrors([
+                'edit' => 'У вас нет разрешения на редактирование экземпляра № ' . $id,
+            ]); 
         }
 
         return view('copy_edit', [
@@ -69,10 +71,14 @@ class CopyController extends Controller
 
     public function destroy(string $id){
         if(! Gate::allows('destroy-copy', Copy::all()->where('id', $id)->first())){
-            return redirect('/error')->with('message', 'У вас нет разрешения на удаление экземпляра № ' . $id);    
+            return redirect()->intended('/copy')->withErrors([
+                'del' => 'У вас нет разрешения на удаление экземпляра № ' . $id,
+            ]);  
         }
 
         Copy::destroy($id);
-        return redirect('/copy');
+        return redirect()->intended('/copy')->withErrors([
+            'success' => 'Вы успешно удалили экземпляр',
+        ]);
     }
 }
