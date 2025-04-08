@@ -6,7 +6,7 @@
     @foreach ($users as $user)
         @if ($user->copies->isNotEmpty())
             <div class="mb-4">
-                <h5>Читатель ID: {{ $user->id }} — {{ $user->name }}</h5>
+            <h5>Читатель ID: {{ $user->id }} — {{ $user->last_name }} {{ $user->first_name }} {{ $user->middle_name }}</h5>
                 <table class="table table-bordered">
                     <thead class="table-light text-center">
                         <tr>
