@@ -41,4 +41,5 @@ class AppServiceProvider extends ServiceProvider
             return $user->is_admin;
         });
     }
+    
 }

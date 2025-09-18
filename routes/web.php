@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CopyController;
 use App\Http\Controllers\EditionController;
+use App\Http\Controllers\EditionControllerApi;
 use App\Http\Controllers\LendingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -13,6 +14,10 @@ Route::get('/', function () {
 Route::get('/hello', function () {
     return view('hello', ['title' => 'Hello world!']);
 });
+
+//Route::get('/api/edition', [EditionControllerApi::class, 'index']);  так неправильно
+//Route::get('/api/edition/{id}', [EditionControllerApi::class, 'show']);
+
 
 Route::get('/edition', [EditionController::class, 'index']);
 Route::get('/edition/{id}', [EditionController::class, 'show']);
