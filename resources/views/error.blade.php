@@ -39,4 +39,9 @@
         {{ $message }}
     </div>
     @enderror
+    @error('lend')
+    <div class="alert alert-warning" role="alert">
+        {{ $message }}
+    </div>
+    @enderror
 </div>

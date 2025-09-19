@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CopyController;
 use App\Http\Controllers\EditionController;
+use App\Http\Controllers\EditionControllerApi;
+use App\Http\Controllers\LendingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +14,10 @@ Route::get('/', function () {
 Route::get('/hello', function () {
     return view('hello', ['title' => 'Hello world!']);
 });
+
+//Route::get('/api/edition', [EditionControllerApi::class, 'index']);  так неправильно
+//Route::get('/api/edition/{id}', [EditionControllerApi::class, 'show']);
+
 
 Route::get('/edition', [EditionController::class, 'index']);
 Route::get('/edition/{id}', [EditionController::class, 'show']);
@@ -33,3 +39,9 @@ Route::post('/auth', [LoginController::class, 'authenticate']);
 Route::get('/error', function(){
     return view('error', ['message' => session('message')]);
 });
+
+Route::get('lending/create/{copyId?}', [LendingController::class, 'create'])->middleware('auth');
+Route::post('/lending/store', [LendingController::class, 'store']);
+Route::get('/lending/all', [LendingController::class, 'allLendings'])->name('lendings.all')->middleware('auth');
+
+Route::get('/lending', [LendingController::class, 'userLendings'])->middleware('auth');
