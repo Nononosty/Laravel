@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     //*****************************/
-    public function lendings() 
+    public function lendings()
     {
         return $this->hasMany(Lending::class);
     }
