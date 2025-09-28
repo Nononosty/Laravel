@@ -10,10 +10,22 @@ class CopyControllerApi extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    /*public function index()
     {
         return response(Copy::all());
+    }*/
+
+    ////////////////////////////////////////////////////////////////////////
+    public function index(Request $request){
+        return response(Copy::limit($request->perpage ?? 5)
+        ->offset(($request->perpage ?? 5) * ($request->page ?? 0))
+        ->get());
     }
+
+    public function total(){
+        return response(Copy::all()->count());
+    }
+////////////////////////////////////////////////////////////////////////
 
     public function show(string $id)
     {

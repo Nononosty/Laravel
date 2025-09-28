@@ -10,11 +10,21 @@ class EditionControllerApi extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+   /* public function index()
     {
         return response(Edition::all());
+    }*/
+////////////////////////////////////////////////////////////////////////
+    public function index(Request $request){
+        return response(Edition::limit($request->perpage ?? 5)
+        ->offset(($request->perpage ?? 5) * ($request->page ?? 0))
+        ->get());
     }
 
+    public function total(){
+        return response(Edition::all()->count());
+    }
+////////////////////////////////////////////////////////////////////////
     public function show(string $id)
     {
         return response(Edition::find($id));

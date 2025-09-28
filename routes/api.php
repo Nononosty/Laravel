@@ -17,6 +17,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/copy', [CopyControllerApi::class, 'index']);
+    Route::get('/copy_total', [CopyControllerApi::class, 'total']);
     Route::get('/user', function (Request $request){
         return $request->user();
     });
@@ -28,7 +29,8 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
 Route::get('/edition', [EditionControllerApi::class, 'index']);
 Route::get('/edition/{id}', [EditionControllerApi::class, 'show']);
-
+Route::get('/edition_total', [EditionControllerApi::class, 'total']);
+ //////////////////////////////////////
 //Route::middleware('auth:sanctum')->get('/copy', [CopyControllerApi::class, 'index']);
 //////Route::get('/copy', [CopyControllerApi::class, 'index']);
 Route::get('/copy/{id}', [CopyControllerApi::class, 'show']);

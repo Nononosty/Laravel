@@ -35,18 +35,18 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
-        //auth()->user()->tokens()->delete();
-        //return response([
-        //    'message' => 'Logged out'
-        //]);
+        auth()->user()->tokens()->delete();
+        return response([
+            'message' => 'Logged out'
+        ]);
 
-                // Проверяем, аутентифицирован ли пользователь
-        if ($request->user()) {
-            $request->user()->tokens()->delete();
-            return response(['message' => 'Logged out']);
-        }
-        
+        // Проверяем, аутентифицирован ли пользователь
+        //if ($request->user()) {
+        //    $request->user()->tokens()->delete();
+        //    return response(['message' => 'Logged out']);
+        //}
+
         // Если пользователь не аутентифицирован
-        return response(['message' => 'Not authenticated'], 401);
+        //return response(['message' => 'Not authenticated'], 401);
     }
 }
