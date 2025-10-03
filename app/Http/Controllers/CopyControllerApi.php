@@ -16,11 +16,13 @@ class CopyControllerApi extends Controller
     }*/
 
     ////////////////////////////////////////////////////////////////////////
-    public function index(Request $request){
-        return response(Copy::limit($request->perpage ?? 5)
+public function index(Request $request)
+{
+    return response(Copy::with('edition:id,name') // ← загружаем связь с изданием
+        ->limit($request->perpage ?? 5)
         ->offset(($request->perpage ?? 5) * ($request->page ?? 0))
         ->get());
-    }
+}
 
     public function total(){
         return response(Copy::all()->count());

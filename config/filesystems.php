@@ -56,8 +56,14 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
+            'throw' => true,
             'report' => false,
+            'options' => [
+                'verify' => false, // Отключает проверку SSL
+                ],
+            'http' => [ // Добавьте этот блок
+                'verify' => false
+                ],
         ],
 
     ],

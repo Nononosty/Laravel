@@ -25,6 +25,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::get('/lending', [LendingControllerApi::class, 'index']);
     Route::get('/lending/{id}', [LendingControllerApi::class, 'show']);
+
+    Route::post('/edition', [EditionControllerApi::class, 'store']);//7
+
 });
 
 Route::get('/edition', [EditionControllerApi::class, 'index']);
@@ -37,7 +40,4 @@ Route::get('/copy/{id}', [CopyControllerApi::class, 'show']);
 
 //Route::get('/lending', [LendingControllerApi::class, 'index']);
 //Route::get('/lending/{id}', [LendingControllerApi::class, 'show']);
-
-
-
 
